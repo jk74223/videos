@@ -99,6 +99,23 @@
             color: #333;
             flex: 1;
         }
+        .batch-copy-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .batch-copy-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .batch-copy-button:hover {
+            background-color: #2980b9;
+        }
         .copy-button {
             background-color: transparent;
             border: none;
@@ -190,7 +207,7 @@
       <div class="category">
             <div class="category-header" onclick="toggleCategory(this)">
                 <div class="category-title">
-                    <i class="fas fa-cog"></i> 系统设置-未完成
+                    <i class="fas fa-cog"></i> 系统设置
                 </div>
                 <i class="fas fa-chevron-down"></i>
             </div>
@@ -224,7 +241,7 @@
         <div class="category">
             <div class="category-header" onclick="toggleCategory(this)">
                 <div class="category-title">
-                    <i class="fas fa-laptop"></i> 基础操作模块-未完成
+                    <i class="fas fa-laptop"></i> 基础操作模块
                 </div>
                 <i class="fas fa-chevron-down"></i>
             </div>
@@ -259,7 +276,7 @@
         <div class="category">
             <div class="category-header" onclick="toggleCategory(this)">
                 <div class="category-title">
-                    <i class="fas fa-chart-bar"></i> 数据分析模块-未完成
+                    <i class="fas fa-chart-bar"></i> 数据分析模块
                 </div>
                 <i class="fas fa-chevron-down"></i>
             </div>
@@ -310,6 +327,18 @@
                         </button>
                     </div>
                 </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">高级数据分析方法和模型</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon purple">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="subcategory-title">高级分析</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/advanced-analysis')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
       <div class="category">
@@ -322,6 +351,9 @@
             <div class="category-content">
               <div class="subcategory-item">
                     <div class="subcategory-description">电脑端各角色操作</div>
+                <div class="batch-copy-container">
+                    <button class="batch-copy-button" onclick="batchCopy(this)">批量复制</button>
+                </div>
                     <div class="subcategory-link">
                         <div class="subcategory-icon blue">
                             <i class="fas fa-desktop"></i>
@@ -354,7 +386,7 @@
                             <i class="fas fa-desktop"></i>
                         </div>
                         <div class="subcategory-title">财务-电脑</div>
-                        <button class="copy-button" onclick="copyLink('①财务初始化：https://file.boss.boogcloud.com/NKB/AKX/PC/CWCSH.mp4\r\n②基础设置凭证模板：https://file.boss.boogcloud.com/NKB/AKX/PC/JCSZPZMB.mp4\r\n③辅助核算：https://file.boss.boogcloud.com/NKB/AKX/PC/FZHS.mp4\r\n④凭证录入&结账：https://file.boss.boogcloud.com/NKB/AKX/PC/PZLRJZ.mp4\r\n⑤报表查看：https://file.boss.boogcloud.com/NKB/AKX/PC/BBCK.mp4')">
+                        <button class="copy-button" onclick="copyLink('财务电脑端：\r\n①财务初始化：https://file.boss.boogcloud.com/NKB/AKX/PC/CWCSH.mp4\r\n②基础设置凭证模板：https://file.boss.boogcloud.com/NKB/AKX/PC/JCSZPZMB.mp4\r\n③辅助核算：https://file.boss.boogcloud.com/NKB/AKX/PC/FZHS.mp4\r\n④凭证录入&结账：https://file.boss.boogcloud.com/NKB/AKX/PC/PZLRJZ.mp4\r\n⑤报表查看：https://file.boss.boogcloud.com/NKB/AKX/PC/BBCK.mp4')">
                             <i class="fas fa-copy"></i> 复制链接
                         </button>
                     </div>
@@ -435,6 +467,40 @@
                     alert('复制失败，请手动复制链接！');
                 });
         }
+     function batchCopy(button) {
+          const categoryContent = button.parentElement.parentElement;
+          let allLinks = '';
+
+          const copyButtons = categoryContent.querySelectorAll('.copy-button');
+          copyButtons.forEach(button => {
+              // 使用更精确的正则表达式来匹配链接内容
+              const linkMatch = button.getAttribute('onclick').match(/'(.*)'/);
+              if (linkMatch) {
+                  let link = linkMatch[1];
+                  // 替换 HTML 实体中的换行符为真正的换行符
+                  link = link.replace(/\\r\\n/g, '\r\n');
+                  allLinks += link + '\n';
+              }
+          });
+
+          // 移除最后多余的换行符
+          if (allLinks.endsWith('\n')) {
+              allLinks = allLinks.slice(0, -1);
+          }
+
+          if (allLinks) {
+              navigator.clipboard.writeText(allLinks)
+                  .then(() => {
+                      alert('所有链接已复制到剪贴板！');
+                  })
+                  .catch(err => {
+                      console.error('复制失败:', err);
+                      alert('复制失败，请手动复制链接！');
+                  });
+          } else {
+              alert('此分类下没有可复制的链接！');
+          }
+      }
     </script>
 </body>
 </html>
