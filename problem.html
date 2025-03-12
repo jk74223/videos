@@ -1,35 +1,381 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>腾讯文档收集表</title>
+    <title>软件培训资源库</title>
     <style>
-        /* 设置按钮样式 */
-        .fixed-width-button {
-            display: inline-block;
-            width: 360px; /* 固定宽度为360像素 */
-            padding: 10px 0;
-            margin: 20px auto;
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 320px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
             text-align: center;
-            background-color: #1E90FF; /* 按钮背景颜色 */
-            color: #FFFFFF; /* 按钮文字颜色 */
-            font-size: 16px;
-            text-decoration: none; /* 去掉下划线 */
-            border-radius: 5px; /* 圆角 */
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .category-header:hover {
+            background-color: #eef2f7;
+        }
+        .category-title {
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .category-title i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+        .category-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .subcategory-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        .subcategory-description {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            padding: 0 15px;
+        }
+        .subcategory-link {
+            display: flex;
+            align-items: center;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        .subcategory-link:hover {
+            background-color: #eef2f7;
+        }
+        .subcategory-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            color: white;
+            font-size: 18px;
+        }
+        .subcategory-title {
+            font-weight: bold;
+            margin: 0;
+            color: #333;
+            flex: 1;
+        }
+        .copy-button {
+            background-color: transparent;
             border: none;
-            cursor: pointer; /* 鼠标悬停时显示手型 */
+            color: #3498db;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
-
-        /* 鼠标悬停时的样式 */
-        .fixed-width-button:hover {
-            background-color: #187bcd;
+        .copy-button:hover {
+            background-color: #e3f2fd;
         }
+        /* 图标颜色配置 */
+        .blue { background-color: #3498db; }
+        .orange { background-color: #e67e22; }
+        .green { background-color: #2ecc71; }
+        .yellow { background-color: #f1c40f; }
+        .purple { background-color: #9b59b6; }
+        .red { background-color: #e74c3c; }
+        .teal { background-color: #1abc9c; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-<a href="https://doc.weixin.qq.com/smartsheet/form/1_wp9CcYCwAABwGyxUC9cmWgVTrvxGMfgw_a3620f"  class="fixed-width-button">
-    续费登记new
-</a>
+    <div class="container">
+        <h1>软件培训资源库</h1>
+        
+      <div class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div class="category-title">
+                    <i class="fas fa-laptop"></i> 初始化操作
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="category-content">
+              <div class="subcategory-item">
+                <div class="subcategory-description">学习如何导入和管理数据</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="subcategory-title">客户资料快速导入</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/data-import')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                  </div>
+                  <div class="subcategory-link">
+                        <div class="subcategory-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="subcategory-title">商品资料快速导入</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/data-import')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                  </div>
+                  <div class="subcategory-link">
+                        <div class="subcategory-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="subcategory-title">客户期初账款导入</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/data-import')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                  </div>
+                  <div class="subcategory-link">
+                        <div class="subcategory-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="subcategory-title">供应商期初账款导入</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/data-import')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                  </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">学习打印模版的设置</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon blue">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="subcategory-title">打印模版设置</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/install')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div class="category-title">
+                    <i class="fas fa-laptop"></i> 基础操作模块
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="category-content">
+                <div class="subcategory-item">
+                    <div class="subcategory-description">学习软件的安装与基本设置</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon blue">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="subcategory-title">安装与卸载</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/install')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">了解软件的界面布局和基本功能</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon teal">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="subcategory-title">界面介绍</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/interface')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div class="category-title">
+                    <i class="fas fa-chart-bar"></i> 数据分析模块
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="category-content">
+                <div class="subcategory-item">
+                    <div class="subcategory-description">学习如何导入和管理数据</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon green">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="subcategory-title">数据导入</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/data-import')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">掌握基本的数据分析技巧</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon orange">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="subcategory-title">基础分析</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/basic-analysis')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">高级数据分析方法和模型</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon purple">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="subcategory-title">高级分析</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/advanced-analysis')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div class="category-title">
+                    <i class="fas fa-cog"></i> 系统设置模块
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="category-content">
+                <div class="subcategory-item">
+                    <div class="subcategory-description">个性化设置软件界面</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon blue">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="subcategory-title">界面定制</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/customization')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">配置软件的高级选项</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon teal">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="subcategory-title">高级设置</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/advanced-settings')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <div class="category-title">
+                    <i class="fas fa-users"></i> 分角色全流程操作
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="category-content">
+              <div class="subcategory-item">
+                    <div class="subcategory-description">分角色全流程操作</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon blue">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="subcategory-title">老板-手机</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/customization')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">个性化设置软件界面</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon blue">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="subcategory-title">界面定制</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/customization')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="subcategory-item">
+                    <div class="subcategory-description">配置软件的高级选项</div>
+                    <div class="subcategory-link">
+                        <div class="subcategory-icon teal">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="subcategory-title">高级设置</div>
+                        <button class="copy-button" onclick="copyLink('https://example.com/advanced-settings')">
+                            <i class="fas fa-copy"></i> 复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(header) {
+            const categoryContent = header.nextElementSibling;
+            const chevron = header.querySelector('.fa-chevron-down');
+            
+            if (categoryContent.style.display === 'block') {
+                categoryContent.style.display = 'none';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                categoryContent.style.display = 'block';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function copyLink(link) {
+            navigator.clipboard.writeText(link)
+                .then(() => {
+                    alert('链接已复制到剪贴板！');
+                })
+                .catch(err => {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制链接！');
+                });
+        }
+    </script>
 </body>
 </html>
